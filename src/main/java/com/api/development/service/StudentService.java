@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 
+import static com.api.development.enums.ResponseMsg.*;
 import static com.api.development.enums.StatusMsg.*;
 
 @Service
@@ -21,28 +22,28 @@ public class StudentService {
     this.studentRepository = studentRepository;
   }
 
-  public ResponseEntity<Object> getPersonalData(final Long studentId) {
+  public ResponseEntity<Object> getPersonalData(final long studentId) {
     Optional<Student> studentOptional = studentRepository.findById(studentId);
     if (!studentOptional.isPresent()) {
       return ResponseHandler.generateResponse(
-          STUDENT_NOT_PRESENT.getMsg(), HttpStatus.NOT_FOUND, null);
+          false, NOT_FOUND.getMsg(), STUDENT_NOT_PRESENT.getMsg(), null, HttpStatus.NOT_FOUND);
     }
     return ResponseHandler.generateResponse(
-        DATA_FETCHED_SUCCESS.getMsg(), HttpStatus.OK, studentOptional);
+        true, SUCCESS.getMsg(), DATA_FETCHED_SUCCESS.getMsg(), studentOptional, HttpStatus.OK);
   }
 
   @Transactional
-  public ResponseEntity<Object> modifyPersonalInfo(
-      final Long studentId,
+  public ResponseEntity<Object> modifyPersonalData(
+      final long studentId,
       final String firstName,
       final String lastName,
       final String contactNumber,
       final String email) {
     int counter = 0;
     Student studentData = studentRepository.findByIdAndEmail(studentId, email);
-    if (studentData == null) {
+    if (Objects.isNull(studentData)) {
       return ResponseHandler.generateResponse(
-          STUDENT_NOT_PRESENT.getMsg(), HttpStatus.NOT_FOUND, null);
+          false, NOT_FOUND.getMsg(), STUDENT_NOT_PRESENT.getMsg(), null, HttpStatus.NOT_FOUND);
     }
     if (firstName != null
         && firstName.length() > 0
@@ -56,36 +57,32 @@ public class StudentService {
       studentData.setLastName(lastName);
       counter++;
     }
-    if (contactNumber != null
+    if (Objects.isNull(contactNumber)
         && contactNumber.length() > 0
         && !Objects.equals(studentData.getContactNumber(), contactNumber)) {
       studentData.setContactNumber(contactNumber);
       counter++;
     }
-    if (email != null && email.length() > 0 && !Objects.equals(studentData.getEmail(), email)) {
+    if (Objects.isNull(email)
+        && email.length() > 0
+        && !Objects.equals(studentData.getEmail(), email)) {
       Optional<Student> studentOptional = studentRepository.findByEmail(email);
       if (studentOptional.isPresent()) {
         return ResponseHandler.generateResponse(
-            EMAIL_ALREADY_TAKEN.getMsg(), HttpStatus.BAD_REQUEST, null);
+            false,
+            BAD_REQUEST.getMsg(),
+            EMAIL_ALREADY_TAKEN.getMsg(),
+            null,
+            HttpStatus.BAD_REQUEST);
       }
       studentData.setEmail(email);
       counter++;
     }
     if (counter == 0)
       return ResponseHandler.generateResponse(
-          NOTHING_TO_UPDATE.getMsg(), HttpStatus.BAD_REQUEST, null);
+          false, BAD_REQUEST.getMsg(), NOTHING_TO_UPDATE.getMsg(), null, HttpStatus.BAD_REQUEST);
     else
       return ResponseHandler.generateResponse(
-          UPDATE_SUCCESS.getMsg(), HttpStatus.CREATED, studentData);
-  }
-
-  public ResponseEntity<Object> getAcademicData(final Long studentId, final String email) {
-    Student studentData = studentRepository.findByIdAndEmail(studentId, email);
-    if (studentData == null || studentData.getAcademicDetails() == null) {
-      return ResponseHandler.generateResponse(
-          STUDENT_NOT_PRESENT.getMsg(), HttpStatus.NOT_FOUND, null);
-    }
-    return ResponseHandler.generateResponse(
-        DATA_FETCHED_SUCCESS.getMsg(), HttpStatus.OK, studentData.getAcademicDetails());
+          true, CREATED.getMsg(), UPDATE_SUCCESS.getMsg(), studentData, HttpStatus.CREATED);
   }
 }

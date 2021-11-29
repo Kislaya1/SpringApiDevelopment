@@ -7,15 +7,21 @@ import java.util.LinkedHashMap;
 
 public class ResponseHandler {
   public static ResponseEntity<Object> generateResponse(
-      final String message, final HttpStatus status, final Object responseObj) {
+      final boolean success,
+      final String statusMessage,
+      final String message,
+      final Object responseObj,
+      final HttpStatus statusCode) {
     LinkedHashMap<String, Object> map =
         new LinkedHashMap<String, Object>() {
           {
+            put("success", success);
+            put("statusMessage", statusMessage);
             put("message", message);
-            put("status", status);
             put("data", responseObj);
+            put("status", statusCode);
           }
         };
-    return new ResponseEntity<Object>(map, status);
+    return new ResponseEntity<Object>(map, statusCode);
   }
 }

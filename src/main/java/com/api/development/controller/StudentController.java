@@ -16,25 +16,17 @@ public class StudentController {
   }
 
   @GetMapping(path = "/record/{studentId}")
-  public ResponseEntity<Object> getPersonalData(@PathVariable("studentId") final Long studentId) {
+  public ResponseEntity<Object> getPersonalData(@PathVariable("studentId") final long studentId) {
     return studentService.getPersonalData(studentId);
   }
 
   @PostMapping(path = "/record/{studentId}")
-  public ResponseEntity<Object> modifyPersonalInfo(
-      @PathVariable("studentId") final Long studentId,
+  public ResponseEntity<Object> modifyPersonalData(
+      @PathVariable("studentId") final long studentId,
       @RequestParam(required = false) String firstName,
       @RequestParam(required = false) String lastName,
       @RequestParam(required = false) String contactNumber,
       @RequestParam(required = false) String email) {
-    return studentService.modifyPersonalInfo(studentId, firstName, lastName, contactNumber, email);
-  }
-
-  @GetMapping(path = "/academic/record/{studentId}")
-  public void getPersonalAcademicData(
-      @PathVariable("studentId") final Long studentId,
-      @RequestParam(required = false) String name,
-      @RequestParam String email) {
-    studentService.getAcademicData(studentId, email);
+    return studentService.modifyPersonalData(studentId, firstName, lastName, contactNumber, email);
   }
 }

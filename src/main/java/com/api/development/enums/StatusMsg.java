@@ -3,13 +3,14 @@ package com.api.development.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@Getter
 @AllArgsConstructor
+@Getter
 public enum StatusMsg {
-  STUDENT_NOT_PRESENT("Student data not present. Please contact your admin"),
-  DATA_FETCHED_SUCCESS("Data successfully fetched"),
-  EMAIL_ALREADY_TAKEN("Email is already taken. Please use different email id"),
-  NOTHING_TO_UPDATE("Nothing to update. Please provide different values."),
-  UPDATE_SUCCESS("Successfully updated !");
+  SUCCESS("200 : OK"),
+  BAD_REQUEST("400 : Bad Request"),
+  FORBIDDEN("403 : Forbidden"),
+  NOT_FOUND("404 : Not Found"),
+  SERVER_ERROR("500 : Internal Server Error"),
+  CREATED("201 : Created");
   private String msg;
 }
