@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  #service 1: definition of mysql database
+  db:
+    image: mysql:latest
+    container_name: mysql-db2
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - "3307:3306"
+    restart: always
+
+  #service 2: definition of your spring-boot app
+  app:
+    image: college-management
+    container_name: college-management-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    restart: always
+
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db2:3306/collegemanagement?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: admin
