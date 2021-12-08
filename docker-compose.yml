@@ -11,7 +11,7 @@ services:
       - "3307:3306"
     restart: always
 
-  #service 2: definition of your spring-boot app
+  #service 2: definition of spring-boot app
   app:
     image: college-management
     container_name: college-management-app
