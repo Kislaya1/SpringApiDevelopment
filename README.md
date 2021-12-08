@@ -1,4 +1,8 @@
 # <span style="font-family: Calibri; font-size: 2.8em;"> Spring Boot : College Management System </span>
+## <span style="font-family: Calibri; font-size: 2.8em;"> Technology Stack Used </span>
+    1. Spring-Boot in Java
+    2. MySql 
+
 ## <span style="font-family: Calibri; font-size: 2.8em;"> Pre-Requisite </span>
     1. Docker Installation.
 
