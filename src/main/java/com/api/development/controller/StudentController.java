@@ -20,7 +20,7 @@ public class StudentController {
     return studentService.getPersonalData(studentId);
   }
 
-  @PostMapping(path = "/record/{studentId}")
+  @PutMapping(path = "/record/{studentId}")
   public ResponseEntity<Object> modifyPersonalData(
       @PathVariable("studentId") final long studentId,
       @RequestParam(required = false) String firstName,
