@@ -11,7 +11,9 @@
 
 ## <span style="font-family: Calibri; font-size: 2.8em;"> Docker Commands </span>
     1. docker-compose up --build : Since you are using the project 1st time, run this command to install all dependencies.
+
 #### <span style="font-family: Calibri; font-size: 2.8em;"> Note : Run the command "docker-compose up" from 2nd time after above steps is successfully executed. </span>
+
 
     2. docker-compose down : Stopping all the running containers which are getting executed in above 1st step.
 
