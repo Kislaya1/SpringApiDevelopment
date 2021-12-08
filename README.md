@@ -1,6 +1,7 @@
 # <span style="font-family: Calibri; font-size: 2.8em;"> Spring Boot : College Management System </span>
 ## <span style="font-family: Calibri; font-size: 2.8em;"> Technology Stack Used </span>
     1. Spring-Boot in Java
+
     2. MySql 
 
 ## <span style="font-family: Calibri; font-size: 2.8em;"> Pre-Requisite </span>
@@ -9,7 +10,7 @@
     2. Any of your favorite IDE.
 
 ## <span style="font-family: Calibri; font-size: 2.8em;"> Steps to Run the application </span>
-    1. Clone the repository and checkout to master branch.
+    1. Clone the repository and checkout to main branch.
 
     2. Run the below Docker Commands. (Run the docker commands while being inside the project)
 
