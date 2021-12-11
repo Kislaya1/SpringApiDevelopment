@@ -23,41 +23,48 @@ public class Student {
   @Column(name = "registration_id")
   private Long id;
 
-  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
+  @Column(name = "first_name", columnDefinition = "varchar(255) default '0'", unique = true, nullable = false)
   private String firstName;
 
-  @Column private String middleName;
+  @Column(name = "middle_name")
+  private String middleName;
 
-  @Column(nullable = false)
+  @Column(name = "last_name", nullable = false)
   private String lastName;
 
-  @Column(nullable = false)
+  @Column(name = "address", nullable = false)
   private String address;
 
-  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
+  @Column(name = "contact_number", columnDefinition = "varchar(255) default '0'", unique = true, nullable = false)
   private String contactNumber;
 
-  @Column private Integer currentYear;
+  @Column(name = "current_year")
+  private Integer currentYear;
 
-  @Column private Integer currentSemester;
+  @Column(name = "current_semester")
+  private Integer currentSemester;
 
-  @Column private Integer totalAttendance;
+  @Column(name = "total_attendance")
+  private Integer totalAttendance;
 
-  @Column private Double marksObtained;
+  @Column(name = "marks_obtained")
+  private Double marksObtained;
 
-  @Column private Double percentage;
+  @Column(name = "percentage")
+  private Double percentage;
 
-  @Column private ResultType result;
+  @Column(name = "result")
+  private ResultType result;
 
-  @Column(nullable = false)
+  @Column(name = "gender", nullable = false)
   private GenderType gender;
 
-  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
+  @Column(name = "email", columnDefinition = "varchar(255) default '0'", unique = true, nullable = false)
   private String email;
 
-  @Column(nullable = false)
+  @Column(name = "age", nullable = false)
   private Integer age;
 
-  @Column(nullable = false)
+  @Column(name = "is_active", nullable = false)
   private Boolean isActive;
 }
