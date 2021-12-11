@@ -9,6 +9,7 @@ public enum ResponseMsg {
   STUDENT_NOT_PRESENT("Student data not present. Please contact your admin"),
   DATA_FETCHED_SUCCESS("Data successfully fetched"),
   EMAIL_ALREADY_TAKEN("Email is already taken. Please use different email id"),
+  SQL_ERROR("Duplicate Entry for either Contact Number, Email or First Name"),
   NOTHING_TO_UPDATE("Nothing to update. Please provide different values."),
   UPDATE_SUCCESS("Successfully updated !"),
   CREATED_STUDENT_SUCCESS("Student data created successfully!"),

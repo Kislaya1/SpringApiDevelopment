@@ -23,7 +23,7 @@ public class Student {
   @Column(name = "registration_id")
   private Long id;
 
-  @Column(unique = true, nullable = false)
+  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
   private String firstName;
 
   @Column private String middleName;
@@ -34,7 +34,7 @@ public class Student {
   @Column(nullable = false)
   private String address;
 
-  @Column(unique = true, nullable = false)
+  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
   private String contactNumber;
 
   @Column private Integer currentYear;
@@ -52,7 +52,7 @@ public class Student {
   @Column(nullable = false)
   private GenderType gender;
 
-  @Column(unique = true, nullable = false)
+  @Column(columnDefinition = "varchar(255) default ''", unique = true, nullable = false)
   private String email;
 
   @Column(nullable = false)

@@ -22,14 +22,23 @@ public class AdminService {
   }
 
   public ResponseEntity<Object> createStudent(final Student student) {
-    Optional<Student> studentOptional = studentRepository.findByEmail(student.getEmail());
-    if (studentOptional.isPresent()) {
+    Optional<Student> emailStd = studentRepository.findByEmail(student.getEmail());
+    Optional<Student> contactNumStd =
+        studentRepository.findByContactNumber(student.getContactNumber());
+    Optional<Student> firstNameStd = studentRepository.findByFirstName(student.getFirstName());
+
+    try {
+      if (emailStd.isPresent() || contactNumStd.isPresent() || firstNameStd.isPresent()) {
+        return ResponseHandler.generateResponse(
+            false, BAD_REQUEST.getMsg(), SQL_ERROR.getMsg(), null, HttpStatus.BAD_REQUEST);
+      }
+      studentRepository.save(student);
       return ResponseHandler.generateResponse(
-          false, BAD_REQUEST.getMsg(), EMAIL_ALREADY_TAKEN.getMsg(), null, HttpStatus.BAD_REQUEST);
+          true, CREATED.getMsg(), CREATED_STUDENT_SUCCESS.getMsg(), student, HttpStatus.CREATED);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return null;
     }
-    studentRepository.save(student);
-    return ResponseHandler.generateResponse(
-        true, CREATED.getMsg(), CREATED_STUDENT_SUCCESS.getMsg(), student, HttpStatus.CREATED);
   }
 
   public ResponseEntity<Object> getAllStudents() {
