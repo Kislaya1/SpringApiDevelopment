@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Setter
 public class Student {
   @Id
-  @Column(name = "registrationId")
+  @Column(name = "registration_id")
   private Long id;
 
   @Column(unique = true, nullable = false)
