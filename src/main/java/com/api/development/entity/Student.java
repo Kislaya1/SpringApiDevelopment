@@ -50,11 +50,17 @@ public class Student {
   @Column(name = "marks_obtained")
   private Double marksObtained;
 
+  @Column(name = "marks")
+  private Double marks;
+
   @Column(name = "percentage")
   private Double percentage;
 
   @Column(name = "result")
   private ResultType result;
+
+  @Column(name = "comments")
+  private String comments;
 
   @Column(name = "gender", nullable = false)
   private GenderType gender;
