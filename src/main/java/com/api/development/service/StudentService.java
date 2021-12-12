@@ -45,25 +45,25 @@ public class StudentService {
       return ResponseHandler.generateResponse(
           false, NOT_FOUND.getMsg(), STUDENT_NOT_PRESENT.getMsg(), null, HttpStatus.NOT_FOUND);
     }
-    if (firstName != null
+    if (!Objects.isNull(firstName)
         && firstName.length() > 0
         && !Objects.equals(studentData.getFirstName(), firstName)) {
       studentData.setFirstName(firstName);
       counter++;
     }
-    if (lastName != null
+    if (!Objects.isNull(lastName)
         && lastName.length() > 0
         && !Objects.equals(studentData.getLastName(), lastName)) {
       studentData.setLastName(lastName);
       counter++;
     }
-    if (Objects.isNull(contactNumber)
+    if (!Objects.isNull(contactNumber)
         && contactNumber.length() > 0
         && !Objects.equals(studentData.getContactNumber(), contactNumber)) {
       studentData.setContactNumber(contactNumber);
       counter++;
     }
-    if (Objects.isNull(email)
+    if (!Objects.isNull(email)
         && email.length() > 0
         && !Objects.equals(studentData.getEmail(), email)) {
       Optional<Student> studentOptional = studentRepository.findByEmail(email);
