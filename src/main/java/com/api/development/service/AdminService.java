@@ -68,7 +68,7 @@ public class AdminService {
       return ResponseHandler.generateResponse(
           false, NOT_FOUND.getMsg(), DATA_NOT_PRESENT.getMsg(), null, HttpStatus.NOT_FOUND);
     }
-    if (!student.getIsActive()) {
+    if (!student.getAvailable()) {
       return ResponseHandler.generateResponse(
           false, FORBIDDEN.getMsg(), DELETE_FAILURE.getMsg(), null, HttpStatus.FORBIDDEN);
     }

@@ -71,6 +71,6 @@ public class Student {
   @Column(name = "age", nullable = false)
   private Integer age;
 
-  @Column(name = "is_active", nullable = false)
-  private Boolean isActive;
+  @Column(name = "available", nullable = false)
+  private Boolean available;
 }
